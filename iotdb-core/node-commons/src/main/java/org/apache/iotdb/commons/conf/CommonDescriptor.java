@@ -281,7 +281,7 @@ public class CommonDescriptor {
                 "pipe_subtask_executor_max_thread_num",
                 Integer.toString(config.getPipeSubtaskExecutorMaxThreadNum()))));
     if (config.getPipeSubtaskExecutorMaxThreadNum() <= 0) {
-      config.setPipeSubtaskExecutorMaxThreadNum(5);
+      config.setPipeSubtaskExecutorMaxThreadNum(10);
     }
     config.setPipeSubtaskExecutorBasicCheckPointIntervalByConsumedEventCount(
         Integer.parseInt(
