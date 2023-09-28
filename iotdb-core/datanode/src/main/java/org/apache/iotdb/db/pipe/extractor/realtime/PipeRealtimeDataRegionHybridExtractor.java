@@ -198,7 +198,10 @@ public class PipeRealtimeDataRegionHybridExtractor extends PipeRealtimeDataRegio
     final IoTDBConfig config = IoTDBDescriptor.getInstance().getConfig();
     // Assume that the max data replica factor in common config is 3.
     // This can be changed in the future.
-    return 3L * PipeAgent.task().getLeaderDataRegionCount() * config.getWalBufferSize()
+    return 3L
+            * PipeAgent.task().getLeaderDataRegionCount()
+            * config.getWalBufferSize()
+            * PipeConfig.getInstance().getPipeExtractorPendingQueueTsFileLimit()
         > config.getThrottleThreshold();
   }
 
