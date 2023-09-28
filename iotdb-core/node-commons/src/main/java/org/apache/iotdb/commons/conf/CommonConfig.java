@@ -161,6 +161,7 @@ public class CommonConfig {
   private int pipeSubtaskExecutorBasicCheckPointIntervalByConsumedEventCount = 10_000;
   private long pipeSubtaskExecutorBasicCheckPointIntervalByTimeDuration = 10 * 1000L;
   private long pipeSubtaskExecutorPendingQueueMaxBlockingTimeMs = 1000;
+  private int pipeSubtaskCronEventInjectorExecutionIntervalSeconds = 10;
 
   private int pipeExtractorAssignerDisruptorRingBufferSize = 65536;
   private int pipeExtractorMatcherCacheSize = 1024;
@@ -709,6 +710,16 @@ public class CommonConfig {
       long pipeSubtaskExecutorPendingQueueMaxBlockingTimeMs) {
     this.pipeSubtaskExecutorPendingQueueMaxBlockingTimeMs =
         pipeSubtaskExecutorPendingQueueMaxBlockingTimeMs;
+  }
+
+  public int getPipeSubtaskCronEventInjectorExecutionIntervalSeconds() {
+    return pipeSubtaskCronEventInjectorExecutionIntervalSeconds;
+  }
+
+  public void setPipeSubtaskCronEventInjectorExecutionIntervalSeconds(
+      int pipeSubtaskCronEventInjectorExecutionIntervalSeconds) {
+    this.pipeSubtaskCronEventInjectorExecutionIntervalSeconds =
+        pipeSubtaskCronEventInjectorExecutionIntervalSeconds;
   }
 
   public void setPipeAirGapReceiverEnabled(boolean pipeAirGapReceiverEnabled) {

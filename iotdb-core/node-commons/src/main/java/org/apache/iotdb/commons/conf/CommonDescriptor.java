@@ -300,6 +300,11 @@ public class CommonDescriptor {
             properties.getProperty(
                 "pipe_subtask_executor_pending_queue_max_blocking_time_ms",
                 String.valueOf(config.getPipeSubtaskExecutorPendingQueueMaxBlockingTimeMs()))));
+    config.setPipeSubtaskCronEventInjectorExecutionIntervalSeconds(
+        Integer.parseInt(
+            properties.getProperty(
+                "pipe_subtask_cron_event_injector_execution_interval_seconds",
+                String.valueOf(config.getPipeSubtaskCronEventInjectorExecutionIntervalSeconds()))));
 
     config.setPipeExtractorAssignerDisruptorRingBufferSize(
         Integer.parseInt(

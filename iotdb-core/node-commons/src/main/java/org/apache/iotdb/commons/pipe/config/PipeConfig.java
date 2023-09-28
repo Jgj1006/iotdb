@@ -71,6 +71,10 @@ public class PipeConfig {
     return COMMON_CONFIG.getPipeSubtaskExecutorPendingQueueMaxBlockingTimeMs();
   }
 
+  public int getPipeSubtaskCronEventInjectorExecutionIntervalSeconds() {
+    return COMMON_CONFIG.getPipeSubtaskCronEventInjectorExecutionIntervalSeconds();
+  }
+
   /////////////////////////////// Extractor ///////////////////////////////
 
   public int getPipeExtractorAssignerDisruptorRingBufferSize() {
