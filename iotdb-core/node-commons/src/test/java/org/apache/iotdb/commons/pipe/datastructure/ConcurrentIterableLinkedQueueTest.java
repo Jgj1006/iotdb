@@ -57,7 +57,7 @@ public class ConcurrentIterableLinkedQueueTest {
     queue.add(2);
     queue.add(3);
 
-    ConcurrentIterableLinkedQueue<Integer>.DynamicIterator itr = queue.iterateFrom(0);
+    ConcurrentIterableLinkedQueue<Integer>.Iterator itr = queue.iterateFrom(0);
     itr.seek(2);
     Assert.assertEquals(Integer.valueOf(3), itr.next());
   }
@@ -65,7 +65,7 @@ public class ConcurrentIterableLinkedQueueTest {
   @Test(timeout = 60000)
   public void testTimedGet() {
     queue.add(1);
-    ConcurrentIterableLinkedQueue<Integer>.DynamicIterator itr = queue.iterateFromEarliest();
+    ConcurrentIterableLinkedQueue<Integer>.Iterator itr = queue.iterateFromEarliest();
     Assert.assertEquals(1, (int) itr.next(1000));
     Assert.assertNull(itr.next(1000));
   }
@@ -115,11 +115,11 @@ public class ConcurrentIterableLinkedQueueTest {
     Assert.assertEquals(1, queue.getFirstIndex());
     Assert.assertEquals(2, queue.getLastIndex());
 
-    ConcurrentIterableLinkedQueue<Integer>.DynamicIterator it = queue.iterateFromEarliest();
+    ConcurrentIterableLinkedQueue<Integer>.Iterator it = queue.iterateFromEarliest();
     Assert.assertEquals(2, (int) it.next());
 
-    ConcurrentIterableLinkedQueue<Integer>.DynamicIterator it2 = queue.iterateFromLatest();
-    Assert.assertEquals(2, it2.getOffset());
+    ConcurrentIterableLinkedQueue<Integer>.Iterator it2 = queue.iterateFromLatest();
+    Assert.assertEquals(2, it2.getCurrentIndex());
     AtomicInteger value = new AtomicInteger(-1);
     new Thread(() -> value.set(it2.next())).start();
     queue.add(3);
@@ -173,8 +173,7 @@ public class ConcurrentIterableLinkedQueueTest {
           new Thread(
               () -> {
                 try {
-                  ConcurrentIterableLinkedQueue<Integer>.DynamicIterator it =
-                      queue.iterateFromEarliest();
+                  ConcurrentIterableLinkedQueue<Integer>.Iterator it = queue.iterateFromEarliest();
                   for (int j = 0; j < 20000; ++j) {
                     it.next();
                   }
